@@ -13,7 +13,8 @@ void comma(int x, int y)
     {
         comma(x/10, y+1);
         printf("%d", x%10);
-        if(y%3==0)
-            printf(",");
+        if(y!=0)    
+            if(y%3==0)
+                printf(",");
     }
 }
