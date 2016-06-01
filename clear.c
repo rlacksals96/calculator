@@ -4,7 +4,7 @@
  {
      int i;
      char var[3][50] = {"123165165", "16515449", "51651651"};
-     printf("1: clear, 2: var, 3; exit\n");
+     printf("1: clear, 2: var, 3: exit\n");
      scanf("%d", &i);
      switch(i)
      {
