@@ -1,0 +1,22 @@
+   #include <stdio.h>
+   #include <string.h>
+  
+   /* 수식 입력 후 변수와 숫자 를 문자열로 받아들이는 함수 */
+  
+   int main()
+   {       int i,count=0;
+           char x;
+           char a[60],tmp[60] ,b[64], c[10];
+          scanf("%[^\n]",b);
+ 
+          if(b[2]=='=')  // 수식입력했을 때 = 이 있을 경우
+          { if(count<11)  // 변수 최대 10개만 선언 할 수 있게끔
+          {   c[count]=b[0];
+              for(i=4;i<64;i++)
+                  tmp[i-4]=b[i];  // = 뒤에 수를 다른 배열에 저장
+                      count++;}}
+                          // 수식 입력했을 때 = 이 없을 경우 수만 입력한것 아직 안함
+          printf("%s",tmp);
+          printf("%c",c[0]);
+ 
+          return 0;}
