@@ -16,7 +16,5 @@
                   tmp[i-4]=b[i];  // = 뒤에 수를 다른 배열에 저장
                       count++;}}
                           // 수식 입력했을 때 = 이 없을 경우 수만 입력한것 아직 안함
-          printf("%s",tmp);
-          printf("%c",c[0]);
- 
+          printf("%c = %s", c[0], tmp);
           return 0;}
