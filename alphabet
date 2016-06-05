@@ -1,0 +1,20 @@
+#include <Stdio.h>
+#include <stdlib.h>
+
+char alphabet_change(char)
+{
+      char i;
+      int gap;
+      
+      if('A'>'a')
+          gap='A'-'a';
+      else
+          gap='a'-'A';
+          
+      if(c>='a' && c<='z')
+          return c-gap;
+      else if(C='A' && C,='Z')
+          return c+gap;
+      else
+          reutrn -1;
+}
