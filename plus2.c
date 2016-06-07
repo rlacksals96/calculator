@@ -27,6 +27,7 @@ int main(void)
 	wrt(sum);
 	return 0;
 }
+
 void add(char sum[], char a[], char b[])
 {
 	int carry = 0;
