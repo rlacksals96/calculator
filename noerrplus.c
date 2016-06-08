@@ -3,8 +3,6 @@
 
 void plus(char sum[],char a1[],char a2[]);
 void rev(char p[], int a);
-void change(char p[]);
-void rechange(char p[]);
 int main(void)
 {
 	char a[10][100]={0};
@@ -22,13 +20,6 @@ int main(void)
 return 0;
 }
 
-void change(char p[])
-{  
-   int a;
-   for(a=0;a<strlen(p);a++)
-   p[a]-='0';
-
-   } 
 
 void plus(char sum[],char a1[],char a2[]) 
 { 
@@ -51,23 +42,3 @@ void plus(char sum[],char a1[],char a2[])
 if(sum[size-1]=='0') sum[size]=='1';
  }
 
-void rev(char a[],int size)
-{
-	int tmp;
-
-	for(int i=0;i<size/2;i++)
-	{  
-		tmp=a[i];
-		a[i]=a[size-1-i];
-		a[size-1-i]=tmp;
-
-	}
-
-}
-
-void rechange(char p[])
-{ 
-	int a;
-	for(a=0;strlen((p));a++)
-		p[a]+='0';
-}
