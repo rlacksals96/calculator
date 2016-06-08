@@ -48,7 +48,7 @@ void plus(char sum[],char a1[],char a2[])
    { sum[i]=(a1[i]-'0'+a2[i]-'0'+carry)%10+'0';
 		 carry=(a1[i]-'0'+a2[i]-'0'+carry)/10;
    }
-
+if(sum[size-1]=='0') sum[size]=='1';
  }
 
 void rev(char a[],int size)
