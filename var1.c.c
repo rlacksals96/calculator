@@ -3,6 +3,7 @@
 #include <string.h>
 int main()
 {
+	FILE *save;
 	char a[50],b[]={"Hello"};
 	scanf("%[^\n]",a);
 	getchar();
