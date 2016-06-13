@@ -1,0 +1,190 @@
+int minus(struct BigNum *object, struct BigNum *object2, struct BigNum *object3)
+{
+        int i=0, j=0, k=0;
+        k = compare_number(object, object2);
+        if (object->i_total_digit>object2->i_total_digit)
+        {
+                if (object->d_total_digit>object2->d_total_digit)
+                {
+                        object3->i_total_digit = object2->i_total_digit;
+                        object3->d_total_digit = object->d_total_digit;
+                }
+                else
+                {
+                        object3->i_total_digit = object2->i_total_digit;
+                        object3->d_total_digit = object2->d_total_digit;
+                }
+        }
+        else if (object->i_total_digit == object2->i_total_digit)
+        {
+                if (object->d_total_digit>object2->d_total_digit)
+                {
+                        object3->i_total_digit = object->i_total_digit;
+                        object3->d_total_digit = object->d_total_digit;
+                }
+                else
+                {
+                        object3->i_total_digit = object->i_total_digit;
+                        object3->d_total_digit = object2->d_total_digit;
+                }
+        }
+        else
+        {
+                if (object->d_total_digit>object2->d_total_digit)
+                {
+                        object3->i_total_digit = object->i_total_digit;
+                        object3->d_total_digit = object->d_total_digit;
+                }
+                else
+                {
+                        object3->i_total_digit = object->i_total_digit;
+                        object3->d_total_digit = object2->d_total_digit;
+                }
+        }
+        for (i = 0; i<object3->i_total_digit; i++)
+        {
+                object3->i_digit[i] = object->i_digit[i] - object2->i_digit[i];
+        }
+        if (object->i_total_digit>object2->i_total_digit)
+        {
+                for (i = object3->i_total_digit; i<object->i_total_digit; i++)
+                {
+                        object3->i_digit[i] = object->i_digit[i];
+                }
+                object3->i_total_digit = object->i_total_digit;
+        }
+        else
+        {
+                for (i = object3->i_total_digit; i<object2->i_total_digit; i++)
+ {
+                        object3->i_digit[i] = 0 - object2->i_digit[i];
+                        j++;
+                }
+                object3->i_total_digit = object2->i_total_digit;
+        }
+        if (object->d_total_digit>object2->d_total_digit)
+        {
+                j = object->d_total_digit - object2->d_total_digit;
+        }
+        else
+        {
+                j = object2->d_total_digit - object->d_total_digit;
+        }
+        if (object->d_total_digit>object2->d_total_digit)
+        {
+                for (i = 0; i<j; i++)
+                {
+                        object3->d_digit[i] = object->d_digit[i];
+                }
+                for (i = j; i<object3->d_total_digit; i++)
+                {
+                        object3->d_digit[i] = object->d_digit[i] - object2->d_digit[i - j];
+                }
+        }
+        else if (object->d_total_digit == object2->d_total_digit)
+        {
+                for (i = 0; i<object->d_total_digit; i++)
+                {
+                        object3->d_digit[i] = object->d_digit[i] - object2->d_digit[i];
+                }
+        }
+        else
+        {
+                for (i = 0; i<j; i++)
+                {
+                        object3->d_digit[i] = 0 - object2->d_digit[i];
+                }
+                for (i = j; i<object3->d_total_digit; i++)
+                {
+                        object3->d_digit[i] = object->d_digit[i - j] - object2->d_digit[i];
+                }
+        }
+        if (k == 1)
+        {
+                for (i = 0; i<object3->d_total_digit; i++)
+                {
+                        if (object3->d_digit[i]<0)
+                        {
+                                object3->d_digit[i] = object3->d_digit[i] + 10;
+                                if (i == 99 || i == object3->d_total_digit - 1)
+                                {
+                                        object3->i_digit[0]--;
+                                }
+                                else
+                                {
+                                        object3->d_digit[i + 1]--;
+                                }
+                        }
+                }
+                for (i = 0; i<object3->i_total_digit; i++)
+                {
+                        if (object3->i_digit[i]<0)
+                        {
+                                object3->i_digit[i] = object3->i_digit[i] + 10;
+                                object3->i_digit[i + 1]--;
+                        }
+                }
+                object3->sign = object->sign;
+        }
+        else if (k == 2)
+        {
+                for (i = 0; i<object3->d_total_digit; i++)
+                {
+                        object3->d_digit[i] = 0 - object3->d_digit[i];
+                        if (object3->d_digit[i]<0)
+                        {
+                                if (i == 99)
+                                {
+         object3->i_digit[0]--;
+                                }
+                                else if (i == object3->d_total_digit - 1)
+                                {
+                                        object3->d_digit[i] = object3->d_digit[i] + 10;
+                                        object3->i_digit[0]++;
+                                }
+                                else
+                                {
+                                        object3->d_digit[i] = object3->d_digit[i] + 10;
+                                        object3->d_digit[i + 1]++;
+                                }
+                        }
+                }
+                for (i = 0; i<object3->i_total_digit; i++)
+                {
+                        object3->i_digit[i] = 0 - object3->i_digit[i];
+                        if (object3->i_digit[i]<0)
+                        {
+                                object3->i_digit[i] = object3->i_digit[i] + 10;
+                                object3->i_digit[i + 1]++;
+                        }
+                }
+                object3->sign = 0 - object->sign;
+        }
+        for (i = 0; i<object3->d_total_digit; i++)
+        {
+                if (object3->d_digit[i] == 0)
+                {
+                        object3->d_total_digit--;
+                }
+                else
+                {
+                        break;
+                }
+        }
+        j = 0;
+        for (i = 0; i<object3->i_total_digit; i++)
+        {
+
+                if (object3->i_digit[object3->i_total_digit - 1 - i] == 0)
+                {
+                        j++;
+                }
+                else
+                {
+                        object3->i_total_digit = object3->i_total_digit - j;
+                        j = 0;
+                        break;
+                }
+        }
+        return 0;
+}
