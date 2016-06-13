@@ -1,0 +1,15 @@
+  void savevar()
+  {
+      //  FILE* pf = 0;
+      //  fopen_s(&pf,"var.txt", "w+");
+      FILE* pf = fopen("var.txt","w+");
+      for (int i = 0; i < 10; i++)
+      {
+          if (arrVar[i].var != 0)
+          {
+              printf("%c = %s\n", arrVar[i].var, arrVar[i].str);
+              fprintf(pf,"%c = %s\n", arrVar[i].var, arrVar[i].str);
+          }
+      }
+      fclose(pf);
+  }
