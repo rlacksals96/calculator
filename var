@@ -1,0 +1,162 @@
+  1 #include <stdio.h>
+  2 #include<stdlib.h>
+  3 #include <string.h>
+  4 int main()
+  5 {char a[50]={'\0'},b[50]={'\0'},c[50]={'\0'},d[50]={'\0'},e[50]={'\0'},f[50]={'\0'},g[50]={'\0'},h[50]={'\0'},i[50]={'\0'},j[50]={'\0'},k[50]={'\0'},
+  6      l[50]={'\0'},m[50]={'\0'},n[50]={'\0'},o[50]={'\0'},p[50]={'\0'},q[50]={'\0'},r[50]={'\0'},s[50]={'\0'},t[50]={'\0'},u[50]={'\0'},v[50]={'\0'},
+  7      w[50]={'\0'},x[50]={'\0'},y[50]={'\0'},z[50]={'\0'};
+  8
+  9
+ 10         int ii,zz=0,aa,count=0;
+ 11         char var[54],tmp[10];
+ 12         while(zz<999)
+ 13         {
+ 14                 scanf("%[^\n]",var);
+ 15                 getchar();
+ 16         if(var[2]=='=')
+ 17         {   if(count<10)
+ 18              for(ii=1;ii<48;ii++)
+ 19                     a[ii-1]=var[ii+3];
+ 20              count++;}
+ 21                     //입력 부분 삽입
+ 22
+ 23         else if(var[2]=='\0')                 //출력 부분 삽입
+ 24             switch(var[0])
+ 25                 {   case'a':
+ 26                     case'A':if(a[0]=='\0')
+ 27                                  printf("UNDEFINED\n");
+ 28                              else
+ 29                               printf("= %s\n",a); break;
+ 30                     case'b':
+ 31                     case'B': if(b[0]=='\0')
+ 32                                 printf("UNDEFINDE\n");
+ 33                              else
+ 34                               printf("= %s\n",b); break;
+ 35                     case'c':
+ 36                     case'C':if(c[0]=='\0')
+ 37                                 printf("UNDEFINED\n");
+ 38                             else
+ 39                                 printf("= %s\n",c); break;
+ 40                     case'd':
+ 41                     case'D':if(d[0]=='\0')
+ 42                                 printf("UNDEFINED\n");
+ 43                             else
+ 44                                 printf("= %s\n",d); break;
+ 45                     case'e':
+ 46                     case'E':if(e[0]=='\0')
+ 47                                 printf("UNDEFINED\n");
+ 48                             else
+ 49                                 printf("= %s\n",e); break;
+ 50                     case'f':
+ 51                     case'F':if(f[0]=='\0')
+ 52                                 printf("UNDEFINED\n");
+ 53                             else
+ 54                                 printf("= %s\n",f); break;
+ 55                     case'g':
+ 56                     case'G':if(g[0]=='\0')
+ 57                                 printf("UNDEFINED\n");
+ 58                             else
+ 59                                 printf("= %s\n",g); break;
+ 60                     case'h':
+ 61                     case'H':if(h[0]=='\0')
+ 62                                 printf("UNDEFINED\n");
+ 63                             else
+ 64                                 printf("= %s\n",h); break;
+ 65                     case'i':
+ 66                     case'I':if(i[0]=='\0')
+ 67                                 printf("UNDEFINED\n");
+ 68                             else
+ 69                                 printf("= %s\n",i); break;
+ 70                     case'j':
+ 71                     case'J':if(j[0]=='\0')
+ 72                                 printf("UNDEFINED\n");
+ 73                             else
+ 74                                 printf("= %s\n",j); break;
+ 75                     case'k':
+ 76                     case'K':if(k[0]=='\0')
+ 77                                 printf("UNDEFINED\n");
+ 78                             else
+ 79                                 printf("= %s\n",k); break;
+ 80                     case'l':
+ 81                     case'L':if(l[0]=='\0')
+ 82                                 printf("UNDEFINED\n");
+ 83                             else
+ 84                                 printf("= %s\n",l); break;
+ 85                     case'm':
+ 86                     case'M':if(m[0]=='\0')
+ 87                                 printf("UNDEFINED\n");
+ 88                             else
+ 89                                 printf("= %s\n",m); break;
+ 90                     case'n':
+ 91                     case'N':if(n[0]=='\0')
+ 92                                 printf("UNDEFINED\n");
+ 93                             else
+ 94                                 printf("= %s\n",n); break;
+ 95                     case'o':
+ 96                     case'O':if(o[0]=='\0')
+ 97                                 printf("UNDEFINED\n");
+ 98                             else
+ 99                                 printf("= %s\n",o); break;
+100                     case'p':
+101                     case'P':if(p[0]=='\0')
+102                                 printf("UNDEFINED\n");
+103                             else
+104                                 printf("= %s\n",p); break;
+105                     case'q':
+106                     case'Q':if(q[0]=='\0')
+107                                 printf("UNDEFINED\n");
+108                             else
+109                                 printf("= %s\n",q); break;
+110                     case'r':
+111                     case'R':if(r[0]=='\0')
+112                                 printf("UNDEFINED\n");
+113                             else
+114                                 printf("= %s\n",r); break;
+115                     case's':
+116                     case'S':if(s[0]=='\0')
+117                                 printf("UNDEFINED\n");
+118                             else
+119                                 printf("= %s\n",s); break;
+120                     case't':
+121                     case'T':if(t[0]=='\0')
+122                                 printf("UNDEFINED\n");
+123                             else
+124                                 printf("= %s\n",t); break;
+125                     case'u':
+126                     case'U':if(u[0]=='\0')
+127                                 printf("UNDEFINED\n");
+128                             else
+129                                 printf("= %s\n",u); break;
+130                     case'v':
+131                     case'V':if(v[0]=='\0')
+132                                 printf("UNDEFINED\n");
+133                             else
+134                                 printf("= %s\n",v); break;
+135                     case'w':
+136                     case'W':if(w[0]=='\0')
+137                                 printf("UNDEFINED\n");
+138                             else
+139                                 printf("= %s\n",w); break;
+140                     case'x':
+141                     case'X':if(x[0]=='\0')
+142                                 printf("UNDEFINED\n");
+143                             else
+144                                 printf("= %s\n",x); break;
+145                     case'y':
+146                     case'Y':if(y[0]=='\0')
+147                                 printf("UNDEFINED\n");
+148                             else
+149                                 printf("= %s\n",y); break;
+150                     case'z':
+151                     case'Z':if(z[0]=='\0')
+152                                 printf("UNDEFINED\n");
+153                             else
+154                                 printf("= %s\n",z); break;
+155                                         }
+156         for(aa=0;aa<54;aa++)
+157                 var[aa]='\0';
+158                   zz++;}
+159
+160         return 0;
+161 }
+

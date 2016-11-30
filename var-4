@@ -1,0 +1,36 @@
+  void input_var(char *k)
+  {
+      char var = 0;
+      char* tk;
+      char* str;
+      int nTemp = 0;
+      tk = replaceAll(k, " ", "");
+      while (*tk)
+      {
+          if ( var == 0 && is_firstalpha(tk))
+        {
+              var = *tk;
+              break;
+          }
+          tk++;
+          nTemp++;
+      }
+      tk+=2;
+      str = tk;
+      for (int i = 0; i < 10; i++)
+      {
+          if (arrVar[i].var == var)
+          {
+              return;
+          }
+          if (arrVar[i].var == 0)
+          {
+              //printf("%d is empty\n", i);
+              arrVar[i].var = var;
+              arrVar[i].str = str;
+              if(bQuiet==0)
+                  printResult(str);
+              break;
+          }
+ 237     }
+ 238 }

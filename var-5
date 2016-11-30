@@ -1,0 +1,20 @@
+  void loadvar()
+  {
+      //FILE* pf = 0;
+      //fopen_s(&pf, "var.txt", "rt");
+      FILE* pf = fopen("var.txt","rt");
+      char s[128];
+      if (pf == 0)
+      {
+          printf("정의된 변수 없음\n");
+          return;
+      }
+ 
+      while (fgets(s, 128, pf) != NULL) {
+          printf(s); // 한 줄씩 화면에 출력
+          char* tp = replaceAll(s, "\n", "");
+          input_var(tp);
+      }
+ 
+      fclose(pf);
+  }

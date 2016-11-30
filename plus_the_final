@@ -1,0 +1,131 @@
+int plus(struct BigNum *object, struct BigNum *object2, struct BigNum *object3)
+{
+        int i, j, k, m;
+        m = 0;
+        if (object->d_total_digit > object2->d_total_digit)
+        {
+                for (j = 0; j<object2->d_total_digit; j++)
+                {
+                        object3->d_digit[j + object2->d_total_digit] = object2->d_digit[j] + object->d_digit[j + object2->d_total_digit];
+                }
+                object3->d_total_digit = object->d_total_digit;
+        }
+        else if (object->d_total_digit == object2->d_total_digit)
+        {
+                for (i = 0; i<object2->d_total_digit; i++)
+                {
+                        object3->d_digit[i] = object->d_digit[i] + object2->d_digit[i];
+                }
+                object3->d_total_digit = object2->d_total_digit;
+        }
+        else
+        {
+                k = object2->d_total_digit - object->d_total_digit;
+                for (j = 0; j<object->d_total_digit; j++)
+                {
+                        object3->d_digit[j + k] = object->d_digit[j] + object2->d_digit[j + k];
+                }
+                for (j = 0; j<object2->d_total_digit; j++)
+                {
+                        object3->d_digit[j] = object2->d_digit[j];
+                }
+                object3->d_total_digit = object2->d_total_digit;
+        }
+
+
+        if (object->i_total_digit>object2->i_total_digit)
+        {
+                for (j = 0; j<object2->i_total_digit; j++)
+                {
+                        object3->i_digit[j] = object->i_digit[j] + object2->i_digit[j];
+                }
+                for (j = object2->i_total_digit; j<object->i_total_digit; j++)
+                {
+                        object3->i_digit[j] = object->i_digit[j];
+                }
+                object3->i_total_digit = object->i_total_digit;
+        }
+        else if (object->i_total_digit == object2->i_total_digit)
+        {
+                for (j = 0; j<object->i_total_digit; j++)
+                {
+                        object3->i_digit[j] = object->i_digit[j] + object2->i_digit[j];
+                }
+                object3->i_total_digit = object2->i_total_digit;
+        }
+        else
+        {
+                for (j = 0; j<object->i_total_digit; j++)
+                {
+                        object3->i_digit[j] = object->i_digit[j] + object2->i_digit[j];
+                }
+                for (j = object->i_total_digit; j<object2->i_total_digit; j++)
+                {
+                        object3->i_digit[j] = object2->i_digit[j];
+                }
+                object3->i_total_digit = object2->i_total_digit;
+        }
+        for (j = 0; j<object3->d_total_digit; j++)
+        {
+                if (object3->d_digit[j]>9)
+                {
+                        object3->d_digit[j] = object3->d_digit[j] - 10;
+                        if (j == object3->d_total_digit - 1)
+                        {
+                                if (object3->i_digit[0] >= 0 && object3->i_digit[0] < 20)
+                                {
+                                        object3->i_digit[0] = object3->i_digit[0] + 1;
+                                }
+                                else
+                                {
+                                        object3->i_digit[0] = 1;
+                                }
+                                 else
+                        {
+                                object3->d_digit[j + 1] = object3->d_digit[j + 1] + 1;
+                        }
+                }
+        }
+        for (j = 0; j<object3->i_total_digit; j++)
+        {
+                if (object3->i_digit[j]>9)
+                {
+                        object3->i_digit[j] = object3->i_digit[j] - 10;
+                        if (j == 99)
+                        {
+                                object3->i_digit_add[0] = 1;
+                                object3->i_total_digit++;
+                        }
+                        else
+                        {
+                                if (object3->i_digit[j + 1]<20 && object3->i_digit[j + 1] >= 0)
+                                {
+                                        object3->i_digit[j + 1]++;
+                                }
+                                else
+                                {
+                                        object3->i_digit[j + 1] = 1;
+                                        object3->i_total_digit++;
+                                }
+
+                        }
+                }
+        }
+        if (object3->d_digit[0] == 0)
+        {
+                object3->d_total_digit--;
+                for (j = 1; j<object3->d_total_digit; j++)
+                {
+                        if (object3->d_digit[j] == 0)
+                        {
+                                object3->d_total_digit--;
+                        }
+                        else
+                        {
+                                break;
+                        }
+                }
+        }
+        object3->sign = object->sign;
+        return 0;
+}
