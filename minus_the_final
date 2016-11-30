@@ -1,0 +1,190 @@
+int minus(struct BigNum *object, struct BigNum *object2, struct BigNum *object3)
+{
+	int i=0, j=0, k=0;
+	k = compare_number(object, object2);
+	if (object->i_total_digit>object2->i_total_digit)//계산되는 수의 소수부분의 길이를 측정하여 위치를 맞춰주기
+	{
+		if (object->d_total_digit>object2->d_total_digit)//정수부분의 자릿수 비교(앞의 값의 길이가 긴경우)
+		{
+			object3->i_total_digit = object2->i_total_digit;//소수부분의 자릿수 길이 일치시켜주기
+			object3->d_total_digit = object->d_total_digit;// 정수부분의 자릿수 길이 일치시켜주기
+		}
+		else//뒤에 값의 길이가 긴경우
+		{
+			object3->i_total_digit = object2->i_total_digit;
+			object3->d_total_digit = object2->d_total_digit;
+		}
+	}
+	else if (object->i_total_digit == object2->i_total_digit)//두수의 소수 자릿수가 같은경우
+	{
+		if (object->d_total_digit>object2->d_total_digit)
+		{
+			object3->i_total_digit = object->i_total_digit;
+			object3->d_total_digit = object->d_total_digit;
+		}
+		else
+		{
+			object3->i_total_digit = object->i_total_digit;
+			object3->d_total_digit = object2->d_total_digit;
+		}
+	}
+	else//뒤의 값의 소수 자릿수가 더 큰경우
+	{
+		if (object->d_total_digit>object2->d_total_digit)
+		{
+			object3->i_total_digit = object->i_total_digit;
+			object3->d_total_digit = object->d_total_digit;
+		}
+		else
+		{
+			object3->i_total_digit = object->i_total_digit;
+			object3->d_total_digit = object2->d_total_digit;
+		}
+	}
+	for (i = 0; i<object3->i_total_digit; i++)//결과값의 소수부분을 저장
+	{
+		object3->i_digit[i] = object->i_digit[i] - object2->i_digit[i];
+	}
+	if (object->i_total_digit>object2->i_total_digit)//연속해서 계산하면, 결과값이 다시 피연산자로 바뀌니, 전체 길이 측정해줌(2중 어디가 크냐에 따라 또 경우가 나뉨)(왼쪽길이가 더큰경우)
+	{
+		for (i = object3->i_total_digit; i<object->i_total_digit; i++)
+		{
+			object3->i_digit[i] = object->i_digit[i];
+		}
+		object3->i_total_digit = object->i_total_digit;
+	}
+	else//(오른쪽 길이가 더 큰경우)
+	{
+		for (i = object3->i_total_digit; i<object2->i_total_digit; i++)
+		{
+			object3->i_digit[i] = 0 - object2->i_digit[i];
+			j++;
+		}
+		object3->i_total_digit = object2->i_total_digit;
+	}
+	if (object->d_total_digit>object2->d_total_digit)
+	{
+		j = object->d_total_digit - object2->d_total_digit;
+	}
+	else
+	{
+		j = object2->d_total_digit - object->d_total_digit;
+	}
+	if (object->d_total_digit>object2->d_total_digit)//이전에 측정한 배열의 길이를 바탕으로 결과값의 정수부분과 소수부분을 object로 이양시킴(여기도 경우의 수가 >,=,<임)
+	{
+		for (i = 0; i<j; i++)//정수부분
+		{
+			object3->d_digit[i] = object->d_digit[i];
+		}
+		for (i = j; i<object3->d_total_digit; i++)//소수부분
+		{
+			object3->d_digit[i] = object->d_digit[i] - object2->d_digit[i - j];
+		}
+	}
+	else if (object->d_total_digit == object2->d_total_digit)
+	{
+		for (i = 0; i<object->d_total_digit; i++)
+		{
+			object3->d_digit[i] = object->d_digit[i] - object2->d_digit[i];
+		}
+	}
+	else
+	{
+		for (i = 0; i<j; i++)
+		{
+			object3->d_digit[i] = 0 - object2->d_digit[i];
+		}
+		for (i = j; i<object3->d_total_digit; i++)
+		{
+			object3->d_digit[i] = object->d_digit[i - j] - object2->d_digit[i];
+		}
+	}
+	if (k == 1)//두 수를 연산하는데 뒷부분의 숫자의 해당자리의 값이 더 크면 뺼때 10을 해당자리의 앞자리에서 빌려와야하니까
+	{
+		for (i = 0; i<object3->d_total_digit; i++)
+		{
+			if (object3->d_digit[i]<0)
+			{
+				object3->d_digit[i] = object3->d_digit[i] + 10;
+				if (i == 99 || i == object3->d_total_digit - 1)
+				{
+					object3->i_digit[0]--;
+				}
+				else
+				{
+					object3->d_digit[i + 1]--;
+				}
+			}
+		}
+		for (i = 0; i<object3->i_total_digit; i++)
+		{
+			if (object3->i_digit[i]<0)
+			{
+				object3->i_digit[i] = object3->i_digit[i] + 10;
+				object3->i_digit[i + 1]--;
+			}
+		}
+		object3->sign = object->sign;
+	}
+	else if (k == 2)//앞의 수가 더 큰경우
+	{
+		for (i = 0; i<object3->d_total_digit; i++)
+		{
+			object3->d_digit[i] = 0 - object3->d_digit[i];
+			if (object3->d_digit[i]<0)
+			{
+				if (i == 99)
+				{
+					object3->i_digit[0]--;
+				}
+				else if (i == object3->d_total_digit - 1)
+				{
+					object3->d_digit[i] = object3->d_digit[i] + 10;
+					object3->i_digit[0]++;
+				}
+				else
+				{
+					object3->d_digit[i] = object3->d_digit[i] + 10;
+					object3->d_digit[i + 1]++;
+				}
+			}
+		}
+		for (i = 0; i<object3->i_total_digit; i++)//소수부분 처리
+		{
+			object3->i_digit[i] = 0 - object3->i_digit[i];
+			if (object3->i_digit[i]<0)
+			{
+				object3->i_digit[i] = object3->i_digit[i] + 10;
+				object3->i_digit[i + 1]++;
+			}
+		}
+		object3->sign = 0 - object->sign;
+	}
+	for (i = 0; i<object3->d_total_digit; i++)//결과값에서 정수부분에 0나오는 자리제거(000.xxx같은 상황)
+	{
+		if (object3->d_digit[i] == 0)
+		{
+			object3->d_total_digit--;
+		}
+		else
+		{
+			break;
+		}
+	}
+	j = 0;
+	for (i = 0; i<object3->i_total_digit; i++)//소수자리부분 길이 초기화
+	{
+
+		if (object3->i_digit[object3->i_total_digit - 1 - i] == 0)
+		{
+			j++;
+		}
+		else
+		{
+			object3->i_total_digit = object3->i_total_digit - j;
+			j = 0;
+			break;
+		}
+	}
+	return 0;
+}
